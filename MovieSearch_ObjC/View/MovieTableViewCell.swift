@@ -14,8 +14,8 @@ class MovieTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
-    @IBOutlet weak var summaryTextView: UITextField!
-
+    @IBOutlet weak var summaryTextLabel: UILabel!
+    
     // MARK: - Properties
     
     var movie: JJTMovie? {
@@ -28,7 +28,10 @@ class MovieTableViewCell: UITableViewCell {
         
         guard let movie = movie else { return }
         titleLabel.text = movie.title
-        ratingLabel.text = "\(movie.rating)"
-        summaryTextView.text = movie.summary
+        // display the movie rating with two decimals at most
+        let stringMovieRating = "\(movie.rating)"
+        let roundedMovieRating = stringMovieRating.prefix(4)
+        ratingLabel.text = String(roundedMovieRating)
+        summaryTextLabel.text = movie.summary
     }
 }
